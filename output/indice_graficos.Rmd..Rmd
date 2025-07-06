@@ -1,0 +1,25 @@
+---
+title: "Índice de Gráficos"
+output: html_document
+date: "2025-07-06"
+---
+## Índice de gráficos con hipervínculos
+
+```{r index_links, echo=FALSE, results='asis'}
+fin_dir <- "output"
+all_files <- list.files(fin_dir, pattern="\\.png$", full.names=FALSE)
+titles <- c(
+  "Heatmaps combinados",
+  "General ROE", "General EPS Growth", "General Debt/Equity",
+  sprintf("Apple — %s", c("ROE", "EPS Growth", "Debt/Equity")),
+  sprintf("Coca-Cola — %s", c("ROE", "EPS Growth", "Debt/Equity")),
+  sprintf("Pfizer — %s", c("ROE", "EPS Growth", "Debt/Equity")),
+  sprintf("Toyota — %s", c("ROE", "EPS Growth", "Debt/Equity")),
+  sprintf("Meli — %s", c("ROE", "EPS Growth", "Debt/Equity"))
+)[1:length(all_files)]
+for(i in seq_along(all_files)) {
+  cat(sprintf("- %s [🔗](%s)\n",
+              titles[i],
+              file.path(fin_dir, all_files[i])))
+}
+
